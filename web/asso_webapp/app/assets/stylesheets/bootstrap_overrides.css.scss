@@ -1,0 +1,20 @@
+/* Navbar */
+
+.navbar ul.nav li{
+  font-weight:bolder;
+  font-size:1.1em;
+
+  &:hover{
+    background-color:black;
+  }
+}
+
+/* Universal */
+
+body{
+  padding-top:70px;
+}
+
+/* CRITICAL | THIS MUST BE AT THE END OF THE PAGE */
+@import "bootstrap";
+@import "bootstrap-responsive";

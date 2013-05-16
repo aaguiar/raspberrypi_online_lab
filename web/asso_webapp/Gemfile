@@ -1,0 +1,31 @@
+source 'https://rubygems.org'
+
+# Rails gem
+gem 'rails', '3.2.11'
+
+# Database gem
+gem 'sqlite3'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+# Linux development env
+unless RUBY_PLATFORM =~ /[win32|mingw32]/
+  gem 'therubyracer'
+  gem 'execjs'
+end
+
+# JQuery gem
+gem 'jquery-rails'
+
+# Used to encrypt password
+gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
+
+# Bootstrap and Sassy CSS gems
+gem "twitter-bootstrap-rails"
+gem 'bootstrap-sass'

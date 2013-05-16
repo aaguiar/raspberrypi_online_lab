@@ -1,0 +1,25 @@
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</a>
+<div class="nav-collapse">
+  <ul class="nav">
+    <li><%= link_to('Home', root_path) %></li>
+
+    <!-- logged user controls -->
+    <% if @current_user %>
+      <li><%= link_to('Logout', destroy_session_path, :method=>'delete') %></li>
+
+      <!-- admin controls -->
+      <% if @current_user.role? :admin %>
+        <li><%= link_to('Manage accounts', users_path) %></li>
+      <% end %>
+
+    <!-- guest controls -->
+    <% else %>
+      <li><%= link_to('Login', new_session_path) %></li>
+      <li><%= link_to('Sign up', new_user_path) %></li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,25 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  user:
+    update:
+      success: "User information successfully updated."
+    create:
+      errors:
+        username_missing: "must be provided."
+        password_missing: "must be provided."
+        username_too_short: "must be at least 6 characters long."
+        password_too_short: "must be at least 6 characters long."
+        username_already_in_use: "is already being used."
+      success: "A new account was successfully created."
+  session:
+    errors:
+      not_logged: "You are not logged in."
+      already_logged: "You are already logged in."
+      wrong_credentials: "The username/password pair is not valid."
+    notices:
+      logout: "Logged out successfully."
+      login: "Logged in successfully."
+  errors:
+    permissions: "You have no permissions to access the page."
