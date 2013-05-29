@@ -1,0 +1,47 @@
+{namespace mazepage}
+
+/**
+ * This is a Closure Template.  Build with:
+ * java -jar ../_soy/SoyToJsSrcCompiler.jar --outputPathFormat template.js --srcs template.soy
+ */
+
+/**
+ * Web page structure.
+ */
+{template .start}
+  <table width="100%" height="100%">
+    <tr>
+      <td width="410" valign="top">
+        <h1>{$ij.MSG.title}</h1>
+
+
+        <table width="100%">
+          <tr>
+             <button id="runButton" class="launch" onclick="Maze.runButtonClick();">
+				{$ij.MSG.runProgram}
+			  </button>
+          </tr>
+        </table>
+        
+      </td>
+
+      <td valign="top">
+        {call .toolbox /}
+        <iframe src="frame.html?{$ij.frameSrc}"></iframe>
+      </td>
+    </tr>
+  </table>
+{/template}
+
+/**
+ * Toolboxes for each level.
+ */
+{template .toolbox}
+
+    <xml id="toolbox" style="display: none">
+      <block type="maze_lamp"></block>
+      <block type="start"></block>
+      <block type="end"></block>
+    </xml>
+
+{/template}
