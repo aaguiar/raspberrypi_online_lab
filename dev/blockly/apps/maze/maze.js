@@ -72,7 +72,13 @@ Maze.execute = function() {
    code = Blockly.Apps.stripCode(code);
   try {
   //send to cluster
-   alert('codigo: ' + code);
+  if((code.indexOf('\n\n') == -1) && (code.indexOf('start') != -1) && (code.indexOf('end') != -1)){
+	  alert('codigo: ' + code);
+  }
+  else{
+	alert('erro: codigo mal formado\n');
+  }
+ 
   } catch (e) {
   alert('error');
     // A boolean is thrown for normal termination.
