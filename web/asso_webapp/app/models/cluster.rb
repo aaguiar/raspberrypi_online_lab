@@ -42,6 +42,7 @@ class Cluster
       http.request(Net::HTTP::Get.new(uri.request_uri))
     else
       http.request(Net::HTTP::Post.new(uri.request_uri))
+    end
   end
 
 

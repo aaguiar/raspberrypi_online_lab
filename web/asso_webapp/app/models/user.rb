@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   attr_accessible :username
   before_create :add_role
+  has_many :scripts
 
   # Validations
   validates :username,

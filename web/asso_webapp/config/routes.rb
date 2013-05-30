@@ -1,5 +1,17 @@
 AssoWebapp::Application.routes.draw do
 
+  get "scripts/get_script"
+
+  get "scripts/get_all"
+
+  get "scripts/new"
+
+  get "scripts/edit"
+
+  get "scripts/delete"
+
+  get "scripts/show_all"
+
   get "clusters/pi_info"
 
   get "session/new"
