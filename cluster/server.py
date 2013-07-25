@@ -8,6 +8,7 @@ import json
 import urllib2
 from json import dumps, loads, JSONEncoder, JSONDecoder
 import pickle
+import pprint
 
 class PythonObjectEncoder(JSONEncoder):
     def default(self, obj):
@@ -24,11 +25,10 @@ runHTTP=True;
 UDP_IP = "127.0.0.1"
 UDP_PORT = 50050
 ListOfPi=[]
-#iAmAPi(01-23-45-67-89-ab,o,o-led-a-d-c-v-b)
-#iAmAPi(01-23-45-67-89-ab,d,o-led-a-d-c-v-b)
-#iAmAPi(01-23-45-67-88-ab,o,o-led-a-d-c-v-b) 
+#iAmAPi(amora1,01-23-45-67-89-ab,o,o-led-a-d-c-v-b)
+#iAmAPi(amora2,01-23-45-67-88-ab,o,o-led-a-d-c-v-b) 
 p = re.compile('iAmAPi\((?P<mac_addr>([0-9A-F]{2}[:-]){5}([0-9A-F]{2})),(?P<status>[a-z]+),(?P<capabilities>[a-z]+(-[a-z]+)*)\)',re.I)
-
+p2 = re.compile('iAmAPi\((?P<name>[0-9a-z]+),(?P<mac_addr>([0-9A-F]{2}[:-]){5}([0-9A-F]{2})),(?P<status>[a-z]+),(?P<capabilities>[a-z]+(-[a-z]+)*)\)',re.I)
 url_format=re.compile('\/(?P<request>([0-9A-Z]+))(?P<params>((\?(.)*))?)',re.I)
 
 def pisToJSON():
@@ -160,6 +160,9 @@ class PiRegClass(threading.Thread):
                 
                 runHTTP=False
                 break
+            if(m== None):
+            	m=p2.match(data.strip())
+           
             if(m!= None):
                 print 'number of Pis registered (before): '+str(len(ListOfPi))
                 
@@ -170,6 +173,9 @@ class PiRegClass(threading.Thread):
                         sock.sendto("fail\n",addr)
                     except ValueError:
                         nPi=PiInfo(m.group('mac_addr'), addr, m.group('status'), m.group('capabilities'))
+                        d=m.groupdict()
+                        if('name' in d):
+                        	nPi.name=m.group('name')
                         ListOfPi.append(nPi)
                         sock.sendto("ok\n",addr)
                 elif(m.group('status')=='d'):
